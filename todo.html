@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="to-do.css" />
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div class="boards">
+        <!-- to do list -->
+      <div class="board">
+        <div class="board-header" id="number"><h2>To do</h2></div>
+        <div class="cover"></div>
+        <div class="button" id="to-do-button">➕Add card</div>
+      </div>
+      <!-- in progress -->
+      <div class="board">
+        <div class="board-header" id="number"><h2>In progress</h2></div>
+        <div class="cover"></div>
+        <div class="button" id="to-do-button">➕Add card</div>
+      </div>
+      <!-- Stuck -->
+    <div class="board">
+        <div class="board-header" id="number"><h2>Stuck</h2></div>
+        <div class="cover"></div>
+        <div class="button" id="to-do-button">➕Add card</div>
+    </div>
+    <!-- Done -->
+      <div class="board">
+        <div class="board-header" id=" number"><h2>Done</h2></div>
+        <div class="cover"></div>
+        <div class="button" id="to-do-button">➕Add card</div>
+      </div>
+    </div>
+  </div>
+  <div class="backdrop">
+    <div class="hidden-card"></div>
+    <div class="modal">
+        <h1>Add task</h1>
+        <div class="title"></div>
+        <div class="description"></div>
+        <div class="status"></div>
+        <div class="priority"></div>
+
+    </div>
+  </div>
+  <script src="todo.js"></script>
+  
+</body>
+</html> 
