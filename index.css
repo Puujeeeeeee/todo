@@ -1,0 +1,295 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+
+  body {
+    font-family: "Arial", sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(C3TZR1g81UNaPs7vzNXHueW5ZM76DSHWEY7onmfLxcK2iQXidP5nEJBgAeuxjDGqApSAGE32MC7KTRw4JJe7oQYY2PGfmUhWBcupcWN6mt3MR7rkVZdJ6Un.png);
+    background-image: url("your-background-image.jpg"); /* Add your background image URL */
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .container {
+    width: 70vw;
+    height: 100vh;
+  }
+  
+  .container {
+    display: flex;
+  
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+    justify-content: space-around;
+  }
+  
+  .boards {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 600px;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .board {
+    width: 15.5vw;
+    height: 20vh;
+    border-radius: 15px;
+    box-shadow: 1px 1px 1px 1px;
+    background-color: #ebecf0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .board-1 {
+    width: 15.5vw;
+    height: 12vh;
+    width: 15vw;
+    height: 22vh;
+    border-radius: 15px;
+    box-shadow: 1px 1px 1px 1px;
+    background-color: #ebecf0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .board-head {
+    width: 14vw;
+    width: 100%;
+    height: 6vh;
+  
+    display: flex;
+  
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  .card {
+    width: 14vw;
+    height: 4vh;
+    font-size: 20px;
+    color: #333;
+  }
+  
+  .zero {
+    color: grey;
+    font-weight: 900;
+    font-size: 20px;
+    margin-left: 20px;
+    font-size: 16px;
+  }
+  .card {
+  
+  .cards {
+    width: 14vw;
+    height: 10vh;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 7px;
+    margin-top: 7px;
+    margin-bottom: 5px;
+  }
+  
+  .circle {
+    border: 1px solid grey;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -60px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .circle.active {
+    background-color: #3498db; /* Add your active color */
+    color: white;
+  }
+  
+  .main-circle {
+    margin-top: 20px;
+  }
+  
+  .add-card {
+    font-size: 18px;
+    margin-left: 20px;
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .card:hover {
+    background-color: rgb(207, 205, 205);
+    background-color: #dcdcdc;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .back-drop {
+  
+  .backdrop-active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .modal {
+    width: 30vw;
+    height: 60vh;
+    border: 2px solid green;
+  }
+  .modalContainer {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0 0 0 0.5);
+    top: 0;
+    left: 0;
+    position: absolute;
+  }
+  .cards {
+    width: 14vw;
+    height: 10vh;
+  
+  .modal {
+    width: 400px;
+    height: 500px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .details {
+    width: 11vw;
+    height: 8vh;
+  
+  .show {
+    display: flex;
+  }
+  
+  .form {
+    width: 80%;
+    height: 80%;
+    border: 1px solid #3498db;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  h4 {
+    font-size: 18px;
+  
+  h1 {
+    font-size: 25px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  p {
+    font-size: 18px;
+    margin-top: 7px;
+  
+  .input {
+    width: 80%;
+    height: 30px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 5px;
+  }
+  .priority {
+    width: 45px;
+    height: 25px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 7px;
+    border: 1px solid grey;
+  
+  button {
+    width: 80%;
+    height: 30px;
+    color: white;
+    background-color: #3498db;
+    border: none;
+    cursor: pointer;
+  }
+  .circle {
+    border: 1px solid grey;
+  
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    display: flex;
+  button:hover {
+    background-color: #217dbb;
+  }
+  /* Your existing CSS styles */
+  /* Add any additional styles as needed for improved aesthetics */
+  
+  .backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  
+  .modalContainer {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: -60px;
+    margin-right: 10px;
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+  .main-circle {
+    margin-top: 100px;
+  }
+  .modal {
+    width: 400px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  

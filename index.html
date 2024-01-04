@@ -33,6 +33,7 @@
   <title>Document</title>
 </head>
 <body>
+
   <div class="container">
     <div class="boards">
       <!-- to do list -->
@@ -62,41 +63,6 @@
     </div>
   </div>
 
-
-  <div class="backdrop">
-    <div class="hidden-card">
-      <div class="add">Add Task</div>
-      <div>
-        <label name="title">Title</label>
-        <input class="border" id="title" name="title">
-        <p class="helper-text">Please enter a title.</p>
-      </div>
-      <div>
-        <label name="description">Description</label>
-        <textarea class="description" id="description" name="description" rows="4" cols="50"></textarea>
-        <p class="helper-text">Please enter a description.</p>
-      </div>
-      <div>
-        <label name="status">Status</label>
-        <select class="border" name="status" id="status">
-          <option value="todo">To do</option>
-          <option value="inprogress">In progress</option>
-          <option value="stuck">Stuck</option>
-          <option value="done">Done</option>
-        </select>
-      </div>
-      <div>
-        <label name="priority">Priority</label>
-        <select class="border" name="priority" id="priority">
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-      </div>
-      <button id="add-task-button" onclick="addTask()">Add Task</button>
-    </div>
-  </div>
-
   <script>
     const allowDrop = (event) => {
       event.preventDefault();
@@ -111,11 +77,6 @@
       const boxId = event.dataTransfer.getData("text");
       const draggedBox = document.getElementById(boxId);
       event.target.appendChild(draggedBox);
-    };
-
-    const addTask = () => {
-      // Add your task addition logic here
-      // ...
     };
   </script>
 
