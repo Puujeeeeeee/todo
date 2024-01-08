@@ -1,194 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      .container {
-        width: 500px;
-        border: 1px solid gray;
-      }
-      .box {
-        width: 120px;
-        border-radius: 8px;
-        background-color: rgb(255, 170, 170);
-      }
-      .flex {
-        display: flex;
-        gap: 20px;
-      }
-      .modalContainer {
-        display: none;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        width: 100vw;
-        background-color: rgba(0, 0, 0, 0.5);
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-      .modal {
-        width: 200px;
-        background-color: white;
-      }
-      .show {
-        display: flex;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="flex">
-      <!-- ehnii container -->
-      <h1>todo</h1>
-      <div
-        class="container flex"
-        ondragover="allowDrop(event)"
-        ondrop="drop(event)"
-        id="todo"
-      ></div>
-      <!-- 2 dahi container-->
-      <h1>done</h1>
-      <div
-        class="container flex"
-        ondragover="allowDrop(event)"
-        ondrop="drop(event)"
-        id="done"
-      ></div>
-      <!-- modal gargah -->
-      <button onclick="show()" id="add-todo-button">Add todo</button>
-      <!-- modal heseg -->
-      <div class="modalContainer">
-        <div class="a" onclick="hide()"></div>
-        <div class="modal">
-          <p>Title</p>
-          <input id="title-input" type="text" />
-          <p>description</p>
-          <input id="description-input" type="text" />
-          <p>status</p>
-          <input id="status-input" type="text" />
-          <p>priority</p>
-          <input id="priority-input" type="text" />
-          <button onclick="addTodo()">Submit</button>
-          <button onclick="hide()">hide</button>
-        </div>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      background-image: url(pexels-photo-417173.jpeg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .board {
+      display: flex;
+    }
+
+    .card {
+      width: 300px;
+      height: auto; /* Adjusted to auto */
+      border-radius: 10px;
+      margin: 10px;
+      background-color: rgb(218, 217, 217);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+      border: 20px solid red;
+    }
+
+    .box {
+      width: 220px;
+      height: 150px;
+      margin: 10px;
+      border-radius: 8px;
+      background-color: rgb(238, 235, 235);
+      cursor: grab;
+    }
+
+    .modalContainer {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .modal {
+      width: 370px;
+      height: 450px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+
+    input, select {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .Submit, .hide {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .Submit {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .hide {
+      background-color: #ccc;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="board">
+    <div class="card">
+      <h1>Todo</h1>
+      <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="todo"></div>
+      <button class="add-todo" onclick="show('todo')">Add todo</button>
     </div>
-    <script>
-      // huuramch todo data
-      const boxArray = [
-        {
-          id: "dsadasdasdsadsa",
-          title: "Read book",
-          Description: "Huuhdin nom olj unshih",
-          Status: "todo",
-          Priority: "low",
-        },
-        {
-          id: "qdwqdwq",
-          title: "Code",
-          Description: "SPOJ 10 bodlogo",
-          Status: "todo",
-          Priority: "high",
-        },
-        {
-          id: "ewqeqwedsadsadsadsa",
-          title: "Sleep",
-          Description: "8n tsag untah",
-          Status: "todo",
-          Priority: "high",
-        },
-      ];
-      // array dahi elementudig niilulj boxnud bolgod todo ruu hiij bga
-      const render = () => {
-        let todoContainerElemenents = "";
-        let doneContainerElemenents = "";
-        const filteredTodo = boxArray.filter((el, i) => el.Status === "todo");
-        const filteredDone = boxArray.filter((el, i) => el.Status === "done");
-        filteredTodo.forEach((el, i) => {
-          todoContainerElemenents += `<div ondragstart="drag(event)" class="box" draggable="true" id="${el.id}">
-            <ul>
-              <li>${el.title}</li>
-              <li>${el.Description}</li>
-              <li>${el.Status}</li>
-              <li>${el.Priority}</li>
-            </ul>
-          </div>
-          `;
+
+    <div class="card">
+      <h1>In Progress</h1>
+      <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="progress"></div>
+      <button class="add-todo" onclick="show('progress')">Add todo</button>
+    </div>
+
+    <div class="card">
+      <h1>Stuck</h1>
+      <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="stuck"></div>
+      <button class="add-todo" onclick="show('stuck')">Add todo</button>
+    </div>
+
+    <div class="card">
+      <h1>Done</h1>
+      <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="done"></div>
+      <button class="add-todo" onclick="show('done')">Add todo</button>
+    </div>
+  </div>
+
+  <div class="modalContainer" onclick="hide()">
+    <div class="modal" onclick="event.stopPropagation();">
+      <h2>Add Task</h2>
+      <p>Title</p>
+      <input id="title-input" type="text" />
+      <p>Description</p>
+      <input id="description-input" type="text" />
+      <p>Status</p>
+      <select name="status" id="status-input">
+        <option value="todo">To do</option>
+        <option value="progress">In progress</option>
+        <option value="stuck">Stuck</option>
+        <option value="done">Done</option>
+      </select>
+      <p>Priority</p>
+      <select name="priority" id="priority-input">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <button class="Submit" onclick="addTodo()">Submit</button>
+      <button class="hide" onclick="hide()">Hide</button>
+    </div>
+  </div>
+
+  <script>
+    const boxArray = [];
+
+    const render = () => {
+      const boards = ['todo', 'progress', 'stuck', 'done'];
+
+      boards.forEach((board) => {
+        const filtered = boxArray.filter((el) => el.Status === board);
+        const container = document.getElementById(board);
+        container.innerHTML = '';
+
+        filtered.forEach((el) => {
+          container.innerHTML += createBox(el);
         });
-        filteredDone.forEach((el, i) => {
-          doneContainerElemenents += `<div ondragstart="drag(event)" class="box" draggable="true" id="${el.id}">
-            <ul>
-              <li>${el.title}</li>
-              <li>${el.Description}</li>
-              <li>${el.Status}</li>
-              <li>${el.Priority}</li>
-            </ul>
-          </div>
-          `;
-        });
-        document.getElementById("todo").innerHTML = todoContainerElemenents;
-        document.getElementById("done").innerHTML = doneContainerElemenents;
+      });
+    };
+
+    const createBox = (el) => {
+      return `<div ondragstart="drag(event)" class="box" draggable="true" id="${el.id}">
+        <ul>
+          <li>${el.title}</li>
+          <li>${el.Description}</li>
+          <li>${el.Status}</li>
+          <li>${el.Priority}</li>
+        </ul>
+      </div>`;
+    };
+
+    const addTodo = () => {
+      const titleInputValue = document.getElementById("title-input").value;
+      const descriptionInputValue = document.getElementById("description-input").value;
+      const statusInputValue = document.getElementById("status-input").value;
+      const priorityInputValue = document.getElementById("priority-input").value;
+
+      const inputObj = {
+        id: Math.random().toString(),
+        title: titleInputValue,
+        Description: descriptionInputValue,
+        Status: statusInputValue,
+        Priority: priorityInputValue,
       };
+
+      boxArray.push(inputObj);
       render();
-      //todo nemeh
-      const addTodo = () => {
-        const titleInputValue = document.getElementById("title-input").value;
-        const descriptionInputValue =
-          document.getElementById("description-input").value;
-        const statusInputValue = document.getElementById("status-input").value;
-        const priorityInputValue =
-          document.getElementById("priority-input").value;
-        console.log(Math.random());
-        const inputObj = {
-          id: Math.random().toString(),
-          title: titleInputValue,
-          Description: descriptionInputValue,
-          Status: statusInputValue,
-          Priority: priorityInputValue,
-        };
-        boxArray.push(inputObj);
-        render();
-      };
-      //modal il gargah
-      const show = () => {
-        document
-          .getElementsByClassName("modalContainer")[0]
-          .classList.add("show");
-      };
-      //modal nuuh
-      const hide = () => {
-        document
-          .getElementsByClassName("modalContainer")[0]
-          .classList.remove("show");
-      };
-      //drag drop ajildag bolgoh
-      const allowDrop = (event) => {
-        event.preventDefault();
-      };
-      const drag = (event) => {
-        event.dataTransfer.setData("text", event.target.id);
-      };
-      const drop = (event) => {
-        event.preventDefault();
-        const boxId = event.dataTransfer.getData("text");
-        const filteredTodo = boxArray.filter((el, i) => el.id === boxId);
-        filteredTodo[0].Status = event.target.id;
-        render();
-      };
-      //edit function implement
-      const edit = () => {};
-      //modal gadna tald darahad nuugdah   ======> zasah shaardlagatai
-      const modalContainer =
-        document.getElementsByClassName("modalContainer")[0];
-      window.onclick = function (event) {
-        if (event.target == modalContainer) {
-          //
-          console.log(event.target, "=====", modalContainer);
-          modalContainer.classList.remove("show");
-        }
-      };
-    </script>
-  </body>
+      hide();
+    };
+
+    const show = (board) => {
+      document.getElementById("status-input").value = board;
+      document.getElementsByClassName("modalContainer")[0].classList.add("show");
+    };
+
+    const hide = () => {
+      document.getElementsByClassName("modalContainer")[0].classList.remove("show");
+    };
+
+    const allowDrop = (event) => {
+      event.preventDefault();
+    };
+
+    const drag = (event) => {
+      event.dataTransfer.setData("text", event.target.id);
+    };
+
+    const drop = (event) => {
+      event.preventDefault();
+      const boxId = event.dataTransfer.getData("text");
+      const filteredTodo = boxArray.filter((el) => el.id === boxId);
+      filteredTodo[0].Status = event.target.id;
+      render();
+    };
+  </script>
+</body>
 </html>
