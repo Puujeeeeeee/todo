@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💥 Puujeegiin to do💥 </title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
       width: 100vw;
       height: 100vh;
@@ -19,50 +13,51 @@
       background-size: cover;
       display: flex;
       justify-content: center;
-      align-items: center;
+      margin-top: 50px;
+      font-family: 'Arial', sans-serif; 
     }
 
-    .board {
-      display: flex;
-    }
-
-    .card {
+    section {
       width: 300px;
-      height: auto; /* Adjusted to auto */
+      height: fit-content;
       border-radius: 10px;
       margin: 10px;
       background-color: rgb(218, 217, 217);
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
     }
 
     .container {
-      width: 100%;
-      height: 100%;
-      border: 20px solid red;
+      width: 280px;
+      height: 200px;
+    
     }
 
-    .box {
-      width: 220px;
-      height: 150px;
+    article {
+      width: 260px;
+      height: 90px;
       margin: 10px;
       border-radius: 8px;
       background-color: rgb(238, 235, 235);
       cursor: grab;
+      display: flex;
+      justify-content: center;
+      gap: 100px;
+      align-items: center;
     }
 
     .modalContainer {
       display: none;
       justify-content: center;
       align-items: center;
+      height: 100vh;
+      width: 100vw;
       background-color: rgba(0, 0, 0, 0.5);
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
     }
 
     .modal {
@@ -76,93 +71,144 @@
       align-items: center;
     }
 
+    .show {
+      display: flex;
+    }
+
+    .flex {
+      display: flex;
+    }
+    
+
     button {
       margin-top: 10px;
-    }
-
-    input, select {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .Submit, .hide {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
       cursor: pointer;
-    }
-
-    .Submit {
-      background-color: #4CAF50;
-      color: white;
+      border: 1px solid black;
+      border-radius: 5px;
+      width: 23vw;
+      height: 4vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
     }
 
     .hide {
-      background-color: #ccc;
+      background-color: white;
       color: black;
+    }
+    .add-todo{
+    width: 285px;
+height:50px;
+
+
+  }
+
+      .border{
+    width:23vw;
+    height:4vh;
+    border:1px solid grey;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;  ;
+
+
+  
+
+}
+.description{
+    width:23vw;
+    height:3vh;
+
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    border:1px solid grey;
+}
+    .submit {
+      background-color: black;
+      color: white;
+    }
+
+    .box ul li {
+      list-style-type: none;
+    }
+
+    .yub {
+      width: 50px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid black;
+      background-color: black;
+      color: white;
+      border-radius: 30px;
     }
   </style>
 </head>
 <body>
 
-  <div class="board">
-    <div class="card">
-      <h1>Todo</h1>
+  <div class="flex">
+    <!-- ehnii container -->
+    <section>
+      <h1>Todo🌹</h1>
       <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="todo"></div>
       <button class="add-todo" onclick="show('todo')">Add todo</button>
-    </div>
-
-    <div class="card">
-      <h1>In Progress</h1>
+    </section>
+    <!-- 2 dahi container-->
+    <section>
+      <h1>In progress🌷</h1>
       <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="progress"></div>
       <button class="add-todo" onclick="show('progress')">Add todo</button>
-    </div>
-
-    <div class="card">
-      <h1>Stuck</h1>
+    </section>
+    <!-- 3 dahi container-->
+    <section>
+      <h1>Stuck💐</h1>
       <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="stuck"></div>
       <button class="add-todo" onclick="show('stuck')">Add todo</button>
-    </div>
-
-    <div class="card">
-      <h1>Done</h1>
+    </section>
+    <!-- 4 dahi container-->
+    <section>
+      <h1>Done🌺</h1>
       <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="done"></div>
       <button class="add-todo" onclick="show('done')">Add todo</button>
-    </div>
+    </section>
   </div>
 
+  <!-- modal gargah -->
+
+  <!-- modal heseg -->
   <div class="modalContainer" onclick="hide()">
     <div class="modal" onclick="event.stopPropagation();">
       <h2>Add Task</h2>
       <p>Title</p>
-      <input id="title-input" type="text" />
+      <input class="description" id="title-input" type="text" />
       <p>Description</p>
-      <input id="description-input" type="text" />
-      <p>Status</p>
-      <select name="status" id="status-input">
+      <textarea class="description" id="description-input" type="text" rows="4" cols="50"></textarea>
+      <p>Status </p>
+      <select class="border" name="status" id="status-input">
         <option value="todo">To do</option>
         <option value="progress">In progress</option>
         <option value="stuck">Stuck</option>
         <option value="done">Done</option>
       </select>
       <p>Priority</p>
-      <select name="priority" id="priority-input">
+      <select class="border" name="priority" id="priority-input">
         <option value="low">Low</option>
         <option value="medium">Medium</option>
         <option value="high">High</option>
       </select>
-      <button class="Submit" onclick="addTodo()">Submit</button>
+      <button class="submit" onclick="addTodo()">Submit</button>
       <button class="hide" onclick="hide()">Hide</button>
     </div>
   </div>
 
   <script>
+    // huuramch todo data
     const boxArray = [];
 
+    // array dahi elementudig niilulj boxnud bolgod todo ruu hiij bga
     const render = () => {
       const boards = ['todo', 'progress', 'stuck', 'done'];
 
@@ -170,7 +216,7 @@
         const filtered = boxArray.filter((el) => el.Status === board);
         const container = document.getElementById(board);
         container.innerHTML = '';
-
+        
         filtered.forEach((el) => {
           container.innerHTML += createBox(el);
         });
@@ -178,16 +224,19 @@
     };
 
     const createBox = (el) => {
-      return `<div ondragstart="drag(event)" class="box" draggable="true" id="${el.id}">
+      return `<article ondragstart="drag(event)" class="box" draggable="true" id="${el.id}">
         <ul>
-          <li>${el.title}</li>
+          <h3>${el.title}</h3>
           <li>${el.Description}</li>
           <li>${el.Status}</li>
-          <li>${el.Priority}</li>
+          <li class="yub">${el.Priority}</li>
         </ul>
-      </div>`;
+      </article>`;
     };
 
+    render();
+
+    //todo nemeh
     const addTodo = () => {
       const titleInputValue = document.getElementById("title-input").value;
       const descriptionInputValue = document.getElementById("description-input").value;
@@ -204,18 +253,21 @@
 
       boxArray.push(inputObj);
       render();
-      hide();
+      hide(); // Hide the modal after adding a todo
     };
 
+    //modal il gargah
     const show = (board) => {
       document.getElementById("status-input").value = board;
       document.getElementsByClassName("modalContainer")[0].classList.add("show");
     };
 
+    //modal nuuh
     const hide = () => {
       document.getElementsByClassName("modalContainer")[0].classList.remove("show");
     };
 
+    //drag drop ajildag bolgoh
     const allowDrop = (event) => {
       event.preventDefault();
     };

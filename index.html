@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>💥 Puujeegiin to do💥 </title>
   <style>
     * {
       margin: 0px;
@@ -11,7 +11,7 @@
     }
 
     body {
-      width: 100vw;
+     width: 100vw;
       height: 100vh;
       background-image: url(pexels-photo-417173.jpeg);
       background-repeat: no-repeat;
@@ -23,7 +23,8 @@
 
     .card {
       width: 300px;
-      height:200px;
+      height:300px;
+      ;
       
       border-radius: 10px;
       margin: 10px;
@@ -37,20 +38,25 @@
     }
 
     .container {
-      width: 250px;
-    
-      border:2px solid red;
+      width:280px;
+      height:200px;
 
+    
+    
    
     }
 
     .box {
-      width: 220px;
-      height: 150px;
+      width: 260px;
+      height: 90px;
       margin: 10px;
       border-radius: 8px;
       background-color: rgb(238, 235, 235);
       cursor: grab;
+      display: flex;
+      justify-content: center;
+      gap:100px;
+      align-items: center;
     }
 
     .modalContainer {
@@ -92,7 +98,7 @@
     }
   .add-todo{
     width: 285px;
-height:100px;
+height:50px;
 
 
   }
@@ -141,8 +147,56 @@ h2{
   font-weight:800 ;
 }
 .submit{
+  width:23vw;
+    height:4vh;
+    border:1px solid black;
+    border-radius: 5px;
+    display: flex;
+    background-color: black;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
 
 }
+.hide{
+ 
+  width:23vw;
+    height:4vh;
+    border:1px solid black;
+    border-radius: 5px;
+    display: flex;
+    background-color: white;
+    color:black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+}
+.box ul li{
+  list-style-type:none;
+}
+.yub{
+  width:50px;
+  height:10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border:2px solid black;
+  background-color: black;
+  color:white;
+
+  border-radius:30px;
+  
+
+
+}
+
   </style>
 </head>
 <body>
@@ -151,7 +205,7 @@ h2{
     <!-- ehnii container -->
     
     <div class="card">
-      <h1>Todo</h1>
+      <h1>Todo🌹</h1>
         <div class="main">
         <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="todo"></div>
         <button class="add-todo" onclick="show('todo')">Add todo</button>
@@ -161,7 +215,7 @@ h2{
     
     
     <div class="card">
-      <h1>In progress</h1>
+      <h1>In progress🌷</h1>
         <div class="main">
         <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="progress"></div>
         <button class="add-todo" onclick="show('progress')">Add todo</button>
@@ -170,7 +224,7 @@ h2{
     <!-- 3 dahi container-->
     
     <div class="card">
-      <h1>Stuck</h1>
+      <h1>Stuck💐</h1>
         <div class="main">
         <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="stuck"></div>
         <button class="add-todo" onclick="show('stuck')">Add todo</button>
@@ -179,7 +233,7 @@ h2{
     <!-- 4 dahi container-->
     
     <div class="card">
-      <h1>Done</h1>
+      <h1>Done🌺</h1>
         <div class="main">
         <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="done"></div>
         <button class="add-todo" onclick="show('done')">Add todo</button>
@@ -197,7 +251,7 @@ h2{
       <p>Title</p>
       <input class="description" id="title-input" type="text" />
       <p>Description</p>
-      <input class="description" id="description-input" type="text" />
+      <textarea class="description" id="description-input" type="text" rows="4" cols="50" ></textarea>
       <p>Status </p>
       <select class="border" name="status" id="status-input">
         <option value="todo">To do</option>
@@ -211,7 +265,7 @@ h2{
         <option value="medium">Medium</option>
         <option value="high">High</option>
       </select>
-      <button class="Submit" onclick="addTodo()">Submit</button>
+      <button class="submit" onclick="addTodo()">Submit</button>
       <button class="hide" onclick="hide()">Hide</button>
     </div>
   </div>
@@ -253,10 +307,10 @@ h2{
     const createBox = (el) => {
       return `<div ondragstart="drag(event)" class="box" draggable="true" id="${el.id}">
         <ul>
-          <li>${el.title}</li>
+          <h3>${el.title}</h3>
           <li>${el.Description}</li>
           <li>${el.Status}</li>
-          <li>${el.Priority}</li>
+          <li class="yub">${el.Priority}</li>
         </ul>
       </div>`;
     };
