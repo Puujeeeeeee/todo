@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💥 Puujeegiin to do💥 </title>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    body {
+     width: 100vw;
+      height: 100vh;
+      background-image: url(pexels-photo-417173.jpeg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    .card {
+      width: 300px;
+      height:300px;
+      ;
+      
+      border-radius: 10px;
+      margin: 10px;
+      background-color: rgb(218, 217, 217);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+
+    }
+
+    .container {
+      width:280px;
+      height:200px;
+
+    
+    
+   
+    }
+
+    .box {
+      width: 260px;
+      height: 90px;
+      margin: 10px;
+      border-radius: 8px;
+      background-color: rgb(238, 235, 235);
+      cursor: grab;
+      display: flex;
+      justify-content: center;
+      gap:100px;
+      align-items: center;
+    }
+
+    .modalContainer {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .modal {
+      width: 370px;
+      height:450px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .show {
+      display: flex;
+    }
+    .flex{
+      display:flex;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+    h1{
+      font-size:25px;
+
+    }
+  .add-todo{
+    width: 285px;
+height:50px;
+
+
+  }
+  .main{
+    width: 285px;
+      height: 125px;
+      display: flex;
+
+      flex-direction: column;
+      justify-content: center;
+      margin-top:50px;
+
+ 
+
+
+  }
+  .border{
+    width:23vw;
+    height:4vh;
+    border:1px solid grey;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;  ;
+
+
+  
+
+}
+.description{
+    width:23vw;
+    height:3vh;
+
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    border:1px solid grey;
+}
+p{
+  font-size:20px;
+  display: flex;
+  justify-content: flex-start;
+
+}
+h2{
+  font-size: 30px;
+  font-weight:800 ;
+}
+.submit{
+  width:23vw;
+    height:4vh;
+    border:1px solid black;
+    border-radius: 5px;
+    display: flex;
+    background-color: black;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+}
+.hide{
+ 
+  width:23vw;
+    height:4vh;
+    border:1px solid black;
+    border-radius: 5px;
+    display: flex;
+    background-color: white;
+    color:black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+}
+.box ul li{
+  list-style-type:none;
+}
+.yub{
+  width:50px;
+  height:10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border:2px solid black;
+  background-color: black;
+  color:white;
+
+  border-radius:30px;
+  
+
+
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="flex">
+    <!-- ehnii container -->
+    
+    <div class="card">
+      <h1>Todo🌹</h1>
+        <div class="main">
+        <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="todo"></div>
+        <button class="add-todo" onclick="show('todo')">Add todo</button>
+      </div>
+    </div>
+    <!-- 2 dahi container-->
+    
+    
+    <div class="card">
+      <h1>In progress🌷</h1>
+        <div class="main">
+        <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="progress"></div>
+        <button class="add-todo" onclick="show('progress')">Add todo</button>
+      </div>
+    </div>
+    <!-- 3 dahi container-->
+    
+    <div class="card">
+      <h1>Stuck💐</h1>
+        <div class="main">
+        <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="stuck"></div>
+        <button class="add-todo" onclick="show('stuck')">Add todo</button>
+      </div>
+    </div>
+    <!-- 4 dahi container-->
+    
+    <div class="card">
+      <h1>Done🌺</h1>
+        <div class="main">
+        <div class="container" ondragover="allowDrop(event)" ondrop="drop(event)" id="done"></div>
+        <button class="add-todo" onclick="show('done')">Add todo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal gargah -->
+
+  <!-- modal heseg -->
+  <div class="modalContainer" onclick="hide()">
+
+    <div class="modal" onclick="event.stopPropagation();">
+      <h2>Add Task</h2>
+      <p>Title</p>
+      <input class="description" id="title-input" type="text" />
+      <p>Description</p>
+      <textarea class="description" id="description-input" type="text" rows="4" cols="50" ></textarea>
+      <p>Status </p>
+      <select class="border" name="status" id="status-input">
+        <option value="todo">To do</option>
+        <option value="progress">In progress</option>
+        <option value="stuck">Stuck</option>
+        <option value="done">Done</option>
+      </select>
+      <p>Priority</p>
+      <select class="border" name="priority" id="priority-input">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <button class="submit" onclick="addTodo()">Submit</button>
+      <button class="hide" onclick="hide()">Hide</button>
+    </div>
+  </div>
+
+  <script>
+    // huuramch todo data
+    const boxArray = [
+    // {
+    //       id: "dsadasdasdsadsa",
+    //       title: "Read book",
+    //       Description: "Huuhdin nom olj unshih",
+    //       Status: "todo",
+    //       Priority: "low",
+    //     },
+    //     {
+    //       id: "qdwqdwq",
+    //       title: "Code",
+    //       Description: "SPOJ 10 bodlogo",
+    //       Status: "todo",
+    //       Priority: "high",
+    //     },
+    ];
+
+    // array dahi elementudig niilulj boxnud bolgod todo ruu hiij bga
+    const render = () => {
+      const boards = ['todo', 'progress', 'stuck', 'done'];
+
+      boards.forEach((board) => {
+        const filtered = boxArray.filter((el) => el.Status === board);
+        const container = document.getElementById(board);
+        container.innerHTML = '';
+        
+        filtered.forEach((el) => {
+          container.innerHTML += createBox(el);
+        });
+      });
+    };
+
+    const createBox = (el) => {
+      return `<div ondragstart="drag(event)" class="box" draggable="true" id="${el.id}">
+        <ul>
+          <h3>${el.title}</h3>
+          <li>${el.Description}</li>
+          <li>${el.Status}</li>
+          <li class="yub">${el.Priority}</li>
+        </ul>
+      </div>`;
+    };
+
+    render();
+
+    //todo nemeh
+    const addTodo = () => {
+      const titleInputValue = document.getElementById("title-input").value;
+      const descriptionInputValue = document.getElementById("description-input").value;
+      const statusInputValue = document.getElementById("status-input").value;
+      const priorityInputValue = document.getElementById("priority-input").value;
+
+      const inputObj = {
+        id: Math.random().toString(),
+        title: titleInputValue,
+        Description: descriptionInputValue,
+        Status: statusInputValue,
+        Priority: priorityInputValue,
+      };
+
+      boxArray.push(inputObj);
+      render();
+      hide(); // Hide the modal after adding a todo
+    };
+
+    //modal il gargah
+    const show = (board) => {
+      document.getElementById("status-input").value = board;
+      document.getElementsByClassName("modalContainer")[0].classList.add("show");
+    };
+
+    //modal nuuh
+    const hide = () => {
+      document.getElementsByClassName("modalContainer")[0].classList.remove("show");
+    };
+
+    //drag drop ajildag bolgoh
+    const allowDrop = (event) => {
+      event.preventDefault();
+    };
+
+    const drag = (event) => {
+      event.dataTransfer.setData("text", event.target.id);
+    };
+
+    const drop = (event) => {
+      event.preventDefault();
+      const boxId = event.dataTransfer.getData("text");
+      const filteredTodo = boxArray.filter((el) => el.id === boxId);
+      filteredTodo[0].Status = event.target.id;
+      render();
+    };
+  </script>
+</body>
+</html>
