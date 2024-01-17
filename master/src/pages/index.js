@@ -242,20 +242,6 @@
 
 // App.js
 
-import React from "react";
-import Toggle from "../component/Toggle";
-
-function App() {
-  return (
-    <div>
-      <h1>Toggle Component Example</h1>
-      <Toggle />
-    </div>
-  );
-}
-
-export default App;
-
 // export default MyComponent;
 
 // import List from "../component/List";
@@ -272,3 +258,140 @@ export default App;
 //     </div>
 //   );
 // }
+
+// import React, { useState } from "react";
+// function MyComponent() {
+//   const [name, setName] = useState("puujee");
+//   const updateName = () => {
+//     setName("puujee" ? "bat" : "puujee");
+//   };
+//   return (
+//     <div>
+//       <p>name:{name}</p>
+//       <button onClick={updateName}>setname</button>
+//     </div>
+//   );
+// }
+// export default MyComponent;
+
+
+
+
+
+// import React, { useState } from "react";
+// const style = {
+//   mainContainer: {
+//     textAlign: "center",
+//     alignItems: "center",
+//   },
+// };
+// const styles = {
+//   countContainer: {
+//     fontSize: 100,
+//     fontWeight: 700,
+//     border: "1px dashed black",
+//   },
+// };
+// const styless = {
+//   countButton: {
+//     width: 153,
+//     height: 45,
+//     backgroundColor: "#33FFE3",
+//     border: "none",
+//     borderRaduis: "25px",
+//     margin: 7,
+//     cursor: "pointer",
+//     fontWeight: 600,
+//   },
+// };
+// export default function Home() {
+//   const [count, setCount] = useState(0);
+//   const increment = () => {
+//     setCount(count + 1);
+//   };
+//   const decrement = () => {
+//     setCount(count - 1);
+//   };
+//   const Reset = () => {
+//     setCount(0);
+//   };
+//   return (
+//     <div style={style.mainContainer}>
+//       <p style={styles.countContainer}>{count}</p>
+//       <button style={styless.countButton} onClick={increment}>
+//         Нэмэгдэнэ
+//       </button>
+//       <button style={styless.countButton} onClick={decrement}>
+//         Хасагдана
+//       </button>
+//       <button style={styless.countButton} onClick={Reset}>
+//         Шинэчлэнэ
+//       </button>
+//     </div>
+//   );
+// }
+
+
+
+
+
+// pages/Calculator.js
+import { useState } from 'react';
+
+export default function Calculator() {
+  const [result, setResult] = useState(0);
+  const [input, setInput] = useState('');
+
+  const handleButtonClick = (value) => {
+    setInput((prevInput) => prevInput + value);
+  };
+
+  const handleCalculate = () => {
+    try {
+      setResult(eval(input));
+    } catch (error) {
+      setResult('Error');
+    }
+  };
+
+  const handleClear = () => {
+    setInput('');
+    setResult(0);
+  };
+
+  return (
+    <div>
+      <h1>Simple Calculator</h1>
+      <div>
+        <input type="text" value={input} readOnly />
+      </div>
+      <div>
+        <button onClick={() => handleButtonClick('1')}>1</button>
+        <button onClick={() => handleButtonClick('2')}>2</button>
+        <button onClick={() => handleButtonClick('3')}>3</button>
+        <button onClick={() => handleButtonClick('+')}>+</button>
+      </div>
+      <div>
+        <button onClick={() => handleButtonClick('4')}>4</button>
+        <button onClick={() => handleButtonClick('5')}>5</button>
+        <button onClick={() => handleButtonClick('6')}>6</button>
+        <button onClick={() => handleButtonClick('-')}>-</button>
+      </div>
+      <div>
+        <button onClick={() => handleButtonClick('7')}>7</button>
+        <button onClick={() => handleButtonClick('8')}>8</button>
+        <button onClick={() => handleButtonClick('9')}>9</button>
+        <button onClick={() => handleButtonClick('*')}>*</button>
+      </div>
+      <div>
+        <button onClick={() => handleButtonClick('0')}>0</button>
+        <button onClick={handleCalculate}>=</button>
+        <button onClick={handleClear}>C</button>
+        <button onClick={() => handleButtonClick('/')}>/</button>
+      </div>
+      <div>
+        <p>Result: {result}</p>
+      </div>
+    </div>
+  );
+}

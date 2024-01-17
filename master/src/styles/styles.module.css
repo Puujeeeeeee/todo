@@ -1,14 +1,9 @@
-.mainContainer{
-    width:1400px;
-    height:2092px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.main-container:{
 
 }
-.box{
-    width:390px;
-    height:551px;
-    border:2px solid red;
+.count-container:{
 
+}
+.count-button:{
+    
 }
